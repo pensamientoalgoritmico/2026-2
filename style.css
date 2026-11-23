@@ -21,6 +21,9 @@ h1 {
  /* font-weight: 900; */
   color: #d1f30f;
 }
+h5 {
+  font-weight: 100;
+}
 ul{
     list-style: none;
     font-size: 1.05rem;
@@ -105,30 +108,6 @@ span.highlight{
   white-space: pre;
   transition: transform 0.1s ease-out, color 0.2s ease;
   will-change: transform;
-}
-
-/* Estilos de la estela de estrellitas que aparece al presionar el click */
-.star-trail {
-  position: fixed;
-  pointer-events: none; 
-  z-index: 9999;
-  line-height: 1;
-  transform: translate(-50%, -50%);
-  animation: fadeAndFall 1.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-@keyframes fadeAndFall {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, calc(-50% + 40px)) scale(0.3) rotate(180deg);
-  }
 }
 
 
