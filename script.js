@@ -81,8 +81,10 @@ function prepararTextosParrafos() {
   const frasesAFraccionar = document.querySelectorAll(".vibrar-frase");
 
   frasesAFraccionar.forEach((contenedor) => {
-    const textoOriginal = contenedor.textContent;
-    contenedor.innerHTML = ""; // Limpiamos el texto plano
+    // Si la frase es un enlace, partimos el texto DENTRO del <a> para no borrarlo
+    const destino = contenedor.querySelector("a") || contenedor;
+    const textoOriginal = destino.textContent.trim();
+    destino.innerHTML = ""; // Limpiamos el texto plano (el <a> se conserva)
     contenedor.classList.add("texto-vibrante-contenedor");
 
     // Convertimos cada letra de la palabra destacada en spans independientes
@@ -90,7 +92,7 @@ function prepararTextosParrafos() {
       const span = document.createElement("span");
       span.textContent = letra === " " ? "\u00A0" : letra;
       span.classList.add("letra-vibrante");
-      contenedor.appendChild(span);
+      destino.appendChild(span);
     });
 
     // Le aplicamos la misma lógica de hover que tienen los estudiantes
