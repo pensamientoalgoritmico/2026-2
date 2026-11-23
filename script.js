@@ -11,23 +11,12 @@ function normalizeText(text) {
 }
 
 /**
- * Función reutilizable para añadir el efecto de vibración vertical en hover a un elemento contenedor
+ * Función reutilizable: voltea en espejo cada letra del contenedor al pasar el mouse
  */
 function aplicarEfectoLetrasVibrantes(elementoContenedor) {
-  elementoContenedor.addEventListener("mouseenter", () => {
-    const spans = elementoContenedor.querySelectorAll(".letra-vibrante");
-    spans.forEach((span) => {
-      // Genera un desfase de altura aleatorio individual entre -12px y 12px
-      const desalineacionAleatoria = (Math.random() - 0.5) * 24;
-      span.style.transform = `translateY(${desalineacionAleatoria}px)`;
-    });
-  });
-
-  elementoContenedor.addEventListener("mouseleave", () => {
-    const spans = elementoContenedor.querySelectorAll(".letra-vibrante");
-    spans.forEach((span) => {
-      span.style.transform = `translateY(0px)`;
-    });
+  // Cada letra se voltea en espejo al pasar el mouse y se queda así
+  elementoContenedor.querySelectorAll(".letra-vibrante").forEach((span) => {
+    span.addEventListener("mouseenter", () => span.classList.add("espejo"));
   });
 }
 
@@ -80,6 +69,7 @@ function prepararTitulo() {
     const span = document.createElement("span");
     span.textContent = letra === " " ? "\u00A0" : letra;
     span.classList.add("letra-magnetica");
+    span.addEventListener("mouseenter", () => span.classList.add("espejo"));
     titulo.appendChild(span);
   });
 }
@@ -127,31 +117,6 @@ document.addEventListener("mouseleave", () => {
 });
 
 document.addEventListener("mousemove", (e) => {
-  // --- A. EFECTO IMÁN (Solo para el título principal) ---
-  const letrasMagneticas = document.querySelectorAll(".letra-magnetica");
-  letrasMagneticas.forEach((span) => {
-    const rect = span.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const distanceX = e.clientX - centerX;
-    const distanceY = e.clientY - centerY;
-    const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
-    const radioEfecto = 80;
-
-    if (distance < radioEfecto) {
-      const fuerza = (radioEfecto - distance) / 2;
-      const moveX = (distanceX / distance) * -fuerza;
-      const moveY = (distanceY / distance) * -fuerza;
-
-      span.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      span.style.color = "#99ff00";
-    } else {
-      span.style.transform = `translate(0, 0)`;
-      span.style.color = "";
-    }
-  });
-
   // --- B. EFECTO: ESTELA DE ESTRELLITAS CONDICIONAL ---
   if (mousePresionado) {
     crearEstrellaEstela(e.clientX, e.clientY);
@@ -174,7 +139,7 @@ function crearEstrellaEstela(x, y) {
   estrella.style.top = `${y + offsetY}px`;
   estrella.style.fontSize = `${size}px`;
 
-  const colores = ["#99ff00", "#8dd1ff", "#ff3700", "#ffffff", "#ffff00"];
+  const colores = ["#99ff00", "#8dd1ff", "#aa90ff", "#ffffff", "#ffff00"];
   estrella.style.color = colores[Math.floor(Math.random() * colores.length)];
 
   document.body.appendChild(estrella);

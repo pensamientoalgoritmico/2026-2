@@ -14,12 +14,12 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #ff3700;
+  color: #aa90ff;
 }
 h1 {
   font-family: 'Gap Sans', sans-serif !important;
  /* font-weight: 900; */
-  color: #8dd1ff;
+  color: #d1f30f;
 }
 ul{
     list-style: none;
@@ -78,7 +78,7 @@ span.highlight{
 .enlace-estudiante:hover,
 .texto-vibrante-contenedor:hover {
   font-size: 1.05rem !important; 
-  color: #ff3700 !important;
+  color: #aa90ff !important;
 }
 
 /* Las palabras clave del párrafo no son bloques completos de lista, 
@@ -153,4 +153,10 @@ span.highlight{
     font-family: 'Stack Sans Notch', sans-serif !important;
     color: #8dd1ff; /* Tu rosa característico */
   }
+}
+
+/* Letras volteadas en espejo (se quedan así después del hover) */
+.letra-vibrante.espejo,
+.letra-magnetica.espejo {
+  transform: scaleX(-1);
 }
