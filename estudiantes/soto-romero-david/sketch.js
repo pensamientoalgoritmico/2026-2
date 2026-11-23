@@ -138,7 +138,7 @@ async function setup() {
   // Carga de sprites del jugador
   animIzquierda[0] = await loadImage('JUGADOR/jugador-1-1.png');
   animIzquierda[1] = await loadImage('JUGADOR/jugador-1-2.png');
-  animIzquierda[2] = await loadImage('JUGADOR/jgador-1-3.png');
+  animIzquierda[2] = await loadImage('JUGADOR/jugador-1-3.png');
 
   animArriba[0] = await loadImage('JUGADOR/jugador-2-3.png');
   animArriba[1] = await loadImage('JUGADOR/jugador-2-1.png');
